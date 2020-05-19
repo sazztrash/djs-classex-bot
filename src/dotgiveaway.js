@@ -1,7 +1,7 @@
 const { CommandClient, Collection } = require('eris')
 const Boss = require('./structures/Boss')
-const ListenerRegister = require('./util/RegisterListener')
-const CommandRegister = require('./util/RegisterCommand')
+const ListenerRegister = require('./handlers/RegisterListener')
+const CommandRegister = require('./handlers/RegisterCommand')
 
 module.exports.dotgiveaway = class dotgiveaway extends CommandClient {
   constructor (token, options, commandoptions) {
