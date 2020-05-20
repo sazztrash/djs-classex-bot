@@ -4,14 +4,18 @@ module.exports = class Guild extends Listener {
     constructor(client) {
         super(client, {
             events: [
-                'guildCreate'
+                'guildCreate',
+                'guildDelete'
             ]
         })
         this.client = client
         this.requestHandler = new RequestHandler(this.client)
     }
     async onGuildCreate(guild) {
-        const res = this.requestHandler.request('POST', '/create', { id: guild.id, active: {}})
-        console.log(res.data) // just for test things.
+        this.requestHandler.request('POST', '/create', { id: guild.id, active: {}, prefix: process.env.BOT_PREFIX })
+    }
+
+    async onGuildDelete(guild) {
+        this.requestHandler.request('POST', '/delete', { id: guild.id })
     }
 }

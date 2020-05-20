@@ -1,6 +1,7 @@
 module.exports = {
-    BASE_URL: 'http://localhost:8000', // just to test things.
+    BASE_URL: 'https://giveaway-api.herokuapp.com', // Current API
     CREATE: '/create',
     UPDATE: '/update',
-    SEE: '/see'
+    SEE: '/see',
+    DELETE: '/delete'
 }
