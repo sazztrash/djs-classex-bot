@@ -7,7 +7,7 @@ module.exports = class Boss {
 
   // https://github.com/SwitchbladeBot/switchblade-next/blob/master/src/structures/Loader.js
   async preCall () {
-  	 try {
+    try {
       const success = await this.load()
       if (!success) throw new Error('Unhandled error')
       return success
@@ -50,6 +50,6 @@ module.exports = class Boss {
   }
 
   async load () {
-  	return true
+    return true
   }
 }

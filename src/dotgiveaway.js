@@ -3,13 +3,12 @@ const Boss = require('./structures/Boss')
 const ListenerRegister = require('./handlers/RegisterListener')
 const CommandRegister = require('./handlers/RegisterCommand')
 
-module.exports.dotgiveaway = class dotgiveaway extends CommandClient {
+module.exports.DotGiveaway = class DotGiveaway extends CommandClient {
   constructor (token, options, commandoptions) {
     super(token, options, commandoptions)
     this.token = token
     this.prefix = options.prefix
     this.commands = new Collection()
-    this.start()
   }
 
   // https://github.com/SwitchbladeBot/switchblade-next/blob/master/src/structures/base/Switchblade.js
@@ -34,7 +33,9 @@ module.exports.dotgiveaway = class dotgiveaway extends CommandClient {
     } catch (e) {
       console.log('BOSS HAVE ERROR!')
     } finally {
-      if (!success) return process.exit(1)
+      if (!success) {
+        process.exit(1)
+      }
     }
     console.log('The Boss is invoked.')
   }

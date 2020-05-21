@@ -4,7 +4,7 @@
   "description": "The only giveaway bot you need.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests --recursive"
   },
   "repository": {
     "type": "git",
@@ -33,7 +33,12 @@
     "dotenv": "^8.2.0",
     "eris": "^0.13.1",
     "fs": "0.0.1-security",
+    "mocha-standard": "^1.0.0",
     "path": "^0.12.7",
     "util": "^0.12.3"
+  },
+  "devDependencies": {
+    "mocha": "^7.1.2",
+    "standard": "^14.3.4"
   }
 }

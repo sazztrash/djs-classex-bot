@@ -1,3 +1,3 @@
 module.exports = {
-  dotgiveaway: require('./dotgiveaway.js')
+  DotGiveaway: require('./dotgiveaway.js')
 }
