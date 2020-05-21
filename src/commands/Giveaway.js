@@ -36,6 +36,9 @@ module.exports = class Giveaway extends Command {
   }
     }
   })
-  this.client.addMessageReaction(message.channel.id, embedMessage.id, '🎉')
-  }
+  await this.client.addMessageReaction(message.channel.id, embedMessage.id, '🎉')
+  setInterval(() => {
+    console.log(embedMessage.reactions)
+  }, 60000);
+}
 }
