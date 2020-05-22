@@ -1,4 +1,5 @@
 module.exports = {
   Files: require('./Files'),
-  Endpoints: require('./Endpoints')
+  Endpoints: require('./Endpoints'),
+  Messages: require('./Messages')
 }

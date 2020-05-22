@@ -12,5 +12,7 @@ module.exports = class Ping extends Command {
 
   async run ({ message, args }) {
     this.client.createMessage(message.channel.id, 'Pong!')
+    const owo = await message.channel.getMessageReaction('712893057816854618', '🎉')
+    console.log(owo)
   }
 }
