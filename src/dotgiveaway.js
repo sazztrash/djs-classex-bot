@@ -1,5 +1,6 @@
 const { Client, Collection } = require('discord.js')
 const { readdir } = require('fs')
+const { GiveawaysManager } = require("discord-giveaways");
 
 module.exports.DotGiveaway = class DotGiveaway extends Client {
   constructor (token, options) {
@@ -7,6 +8,16 @@ module.exports.DotGiveaway = class DotGiveaway extends Client {
     this.token = token
     this.prefix = options.prefix
     this.commands = new Collection()
+    this.manager = new GiveawaysManager(this, {
+      storage: "./giveaways.json",
+      updateCountdownEvery: 10000,
+      default: {
+          botsCanWin: false,
+          exemptPermissions: [ "MANAGE_MESSAGES", "ADMINISTRATOR" ],
+          embedColor: "#FF0000",
+          reaction: "🎉"
+      }
+  });
   }
 
   async start () {

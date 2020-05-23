@@ -10,7 +10,7 @@ module.exports = class Ping extends Command {
     })
   }
 
-  async run ({ message, args }) {
-    message.reply('kk eae men')
+  async run ({ message }) {
+    message.reply('Pong!')
   }
 }
