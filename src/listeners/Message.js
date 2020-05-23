@@ -1,14 +1,9 @@
-const { Listener } = require('../structures/Listener')
-module.exports = class Message extends Listener {
+module.exports = class Message {
   constructor (client) {
-    super(client, {
-      events: [
-        'messageCreate'
-      ]
-    })
+    this.client = client
   }
 
-  async onMessageCreate (message) {
+  async run (message) {
     if (message.author.bot) return
     if (!message.content.startsWith(this.client.prefix)) return
     const args = message.content.slice(this.client.prefix.length).trim().split(/ +/g)
@@ -18,12 +13,12 @@ module.exports = class Message extends Listener {
 
     if (fancyCommand.dev === true) {
       if (message.author.id !== process.env.BOT_OWNER_ID) {
-        return this.client.createMessage(message.channel.id, 'You do not have the required permissions to use this command.')
+        return message.reply('You do not have the required permissions to use this command.')
       }
     }
     if (requiredPermissions !== null) {
-      if (!message.member.permission.has(requiredPermissions)) {
-        return this.client.createMessage(message.channel.id, 'You do not have the required permissions to use this command.')
+      if (!message.member.hasPermission(requiredPermissions)) {
+        return message.reply('You do not have the required permissions to use this command.')
       }
     }
     try {

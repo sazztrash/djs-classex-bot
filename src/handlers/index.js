@@ -1,6 +1,3 @@
 module.exports = {
-  RequestHandler: require('./RequestHandler'),
-  RegisterListener: require('./RegisterListener'),
-  RegisterCommand: require('./RegisterCommand'),
-  TimerHandler: require('./TimerHandler')
+  RequestHandler: require('./RequestHandler')
 }
