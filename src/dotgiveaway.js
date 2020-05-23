@@ -11,9 +11,9 @@ module.exports.DotGiveaway = class DotGiveaway extends Client {
 
   async start () {
     await this.loadCommands()
-      .then(() => console.log('Loaded Commands.'))
+    console.log('Loaded Commands.')
     await this.loadListeners()
-      .then(() => console.log('Loaded Listeners.'))
+    console.log('Loaded Listeners.')
     await this.login(this.token)
       .then(() => console.log('Logged.'))
   }
