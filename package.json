@@ -30,6 +30,7 @@
   "dependencies": {
     "@sentry/node": "^5.15.5",
     "axios": "^0.19.2",
+    "discord-giveaways": "^4.1.1",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
