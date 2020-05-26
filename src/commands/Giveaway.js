@@ -1,6 +1,6 @@
 const { Command } = require('../structures/Command')
 const ms = require('ms')
-
+const { RequestHandler } = require('../handlers/')
 module.exports = class Ping extends Command {
   constructor (client) {
     super(client, {
@@ -9,8 +9,8 @@ module.exports = class Ping extends Command {
       requiredPermissions: 'MANAGE_GUILD',
       dev: false
     })
-
     this.client = client
+    this.requestHandler = new RequestHandler(this.client)
   }
 
   async run ({ message, args }) {
@@ -37,8 +37,25 @@ module.exports = class Ping extends Command {
           pluralS: false // Not needed, because units end with a S so it will automatically removed if the unit value is lower than 2
         }
       }
-    }).then((gData) => {
-      console.log(gData) // {...} (messageid, end date and more)
+    }).then(async (gData) => {
+      const messageID = gData.messageID
+      const usersIn = []
+      const createAndupdateArray = {"id":gData.guildID,"active":{messageID:usersIn}}
+      let seeRequest = this.requestHandler.request('GET', `/see/${gData.guildID}`)
+      if(!seeRequest.statusText === 'OK') {
+        try {
+          this.requestHandler.request('POST', '/create', createAndupdateArray).then(() => console.log('{CREATE} | Requested.'))
+        } catch(e) {
+          console.log(e)
+        }
+        return
+      } else {
+        try {
+          this.requestHandler.request('POST', '/update', createAndupdateArray).then(() => console.log('{UPDATE} | Requested.'))
+        } catch(e) {
+          console.log(e)
+        }
+      }
     })
   }
 }

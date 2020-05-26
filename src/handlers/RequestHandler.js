@@ -9,9 +9,20 @@ module.exports = class RequestHandler {
     if (!method) return console.log('Method not Specified.')
     if (!endpoint) return console.log('Endpoint not Specified.')
     let response
+    if(endpoint.startsWith('/see')) {
+      const formatedEndpoint = ENDPOINTS.SEE.replace('{id}', endpoint)
+      response = await axios({
+        method: method,
+        url: `${ENDPOINTS.BASE_URL}${formatedEndpoint}`
+      })
+      console.log(response)
+      return response
+    }
     switch (endpoint) {
       case ENDPOINTS.CREATE:
         if (!data) return console.log('Data not Specified.')
+        console.log(data.id)
+        console.log(data.active)
         response = await axios({
           method: method,
           url: `${ENDPOINTS.BASE_URL}${ENDPOINTS.CREATE}`,
@@ -19,14 +30,8 @@ module.exports = class RequestHandler {
             botToken: process.env.DISCORD_TOKEN,
             id: data.id,
             active: data.active,
-            prefix: data.prefix
+            prefix: process.env.BOT_PREFIX
           }
-        })
-        break
-      case ENDPOINTS.SEE:
-        response = await axios({
-          method: method,
-          url: `${ENDPOINTS.BASE_URL}${ENDPOINTS.SEE}`
         })
         break
       case ENDPOINTS.UPDATE:
@@ -38,7 +43,7 @@ module.exports = class RequestHandler {
             botToken: process.env.DISCORD_TOKEN,
             id: data.id,
             active: data.active,
-            prefix: data.prefix
+            prefix: process.env.BOT_PREFIX
           }
         })
         break
