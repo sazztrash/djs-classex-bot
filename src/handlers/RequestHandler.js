@@ -9,7 +9,7 @@ module.exports = class RequestHandler {
     if (!method) return console.log('Method not Specified.')
     if (!endpoint) return console.log('Endpoint not Specified.')
     let response
-    if(endpoint.startsWith('/see')) {
+    if (endpoint.startsWith('/see')) {
       const formatedEndpoint = ENDPOINTS.SEE.replace('{id}', endpoint)
       response = await axios({
         method: method,

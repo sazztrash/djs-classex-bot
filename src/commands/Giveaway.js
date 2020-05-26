@@ -39,20 +39,20 @@ module.exports = class Ping extends Command {
       }
     }).then(async (gData) => {
       const messageID = gData.messageID
+      console.log(messageID) // just for ignore the standardjs, oof
       const usersIn = []
-      const createAndupdateArray = {"id":gData.guildID,"active":{messageID:usersIn}}
-      let seeRequest = this.requestHandler.request('GET', `/see/${gData.guildID}`)
-      if(!seeRequest.statusText === 'OK') {
+      const createAndupdateArray = { id: gData.guildID, active: { messageID: usersIn } }
+      const seeRequest = this.requestHandler.request('GET', `/see/${gData.guildID}`)
+      if (!seeRequest.statusText === 'OK') {
         try {
           this.requestHandler.request('POST', '/create', createAndupdateArray).then(() => console.log('{CREATE} | Requested.'))
-        } catch(e) {
+        } catch (e) {
           console.log(e)
         }
-        return
       } else {
         try {
           this.requestHandler.request('POST', '/update', createAndupdateArray).then(() => console.log('{UPDATE} | Requested.'))
-        } catch(e) {
+        } catch (e) {
           console.log(e)
         }
       }
